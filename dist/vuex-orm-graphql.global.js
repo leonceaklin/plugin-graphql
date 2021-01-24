@@ -2,18 +2,18 @@ var VuexORMGraphQLPlugin = (function (exports) {
     'use strict';
 
     /*! *****************************************************************************
-    Copyright (c) Microsoft Corporation. All rights reserved.
-    Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-    this file except in compliance with the License. You may obtain a copy of the
-    License at http://www.apache.org/licenses/LICENSE-2.0
+    Copyright (c) Microsoft Corporation.
 
-    THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-    WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-    MERCHANTABLITY OR NON-INFRINGEMENT.
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
 
-    See the Apache Version 2.0 License for specific language governing permissions
-    and limitations under the License.
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
     /* global Reflect, Promise */
 
@@ -325,8 +325,8 @@ var VuexORMGraphQLPlugin = (function (exports) {
 
     function printPrefixedLines(lines) {
       var existingLines = lines.filter(function (_ref) {
-        var _ = _ref[0],
-            line = _ref[1];
+        _ref[0];
+            var line = _ref[1];
         return line !== undefined;
       });
       var padLen = Math.max.apply(Math, existingLines.map(function (_ref2) {
@@ -8626,7 +8626,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
             var evaledValue = false;
             if (ifArgument.value.kind === 'Variable') {
                 evaledValue = variables[ifArgument.value.name.value];
-                process.env.NODE_ENV === "production" ? invariant(evaledValue !== void 0, 1) : invariant(evaledValue !== void 0, "Invalid variable referenced in @" + directive.name.value + " directive.");
+                process.env.NODE_ENV === "production" ? invariant(evaledValue !== void 0, 13) : invariant(evaledValue !== void 0, "Invalid variable referenced in @" + directive.name.value + " directive.");
             }
             else {
                 evaledValue = ifArgument.value.value;
@@ -8659,12 +8659,12 @@ var VuexORMGraphQLPlugin = (function (exports) {
         return directives ? directives.filter(isInclusionDirective).map(function (directive) {
             var directiveArguments = directive.arguments;
             var directiveName = directive.name.value;
-            process.env.NODE_ENV === "production" ? invariant(directiveArguments && directiveArguments.length === 1, 2) : invariant(directiveArguments && directiveArguments.length === 1, "Incorrect number of arguments for the @" + directiveName + " directive.");
+            process.env.NODE_ENV === "production" ? invariant(directiveArguments && directiveArguments.length === 1, 14) : invariant(directiveArguments && directiveArguments.length === 1, "Incorrect number of arguments for the @" + directiveName + " directive.");
             var ifArgument = directiveArguments[0];
-            process.env.NODE_ENV === "production" ? invariant(ifArgument.name && ifArgument.name.value === 'if', 3) : invariant(ifArgument.name && ifArgument.name.value === 'if', "Invalid argument for the @" + directiveName + " directive.");
+            process.env.NODE_ENV === "production" ? invariant(ifArgument.name && ifArgument.name.value === 'if', 15) : invariant(ifArgument.name && ifArgument.name.value === 'if', "Invalid argument for the @" + directiveName + " directive.");
             var ifValue = ifArgument.value;
             process.env.NODE_ENV === "production" ? invariant(ifValue &&
-                (ifValue.kind === 'Variable' || ifValue.kind === 'BooleanValue'), 4) : invariant(ifValue &&
+                (ifValue.kind === 'Variable' || ifValue.kind === 'BooleanValue'), 16) : invariant(ifValue &&
                 (ifValue.kind === 'Variable' || ifValue.kind === 'BooleanValue'), "Argument for the @" + directiveName + " directive must be a variable or a boolean value.");
             return { directive: directive, ifArgument: ifArgument };
         }) : [];
@@ -8675,7 +8675,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
         var fragments = [];
         document.definitions.forEach(function (definition) {
             if (definition.kind === 'OperationDefinition') {
-                throw process.env.NODE_ENV === "production" ? new InvariantError(5) : new InvariantError("Found a " + definition.operation + " operation" + (definition.name ? " named '" + definition.name.value + "'" : '') + ". " +
+                throw process.env.NODE_ENV === "production" ? new InvariantError(11) : new InvariantError("Found a " + definition.operation + " operation" + (definition.name ? " named '" + definition.name.value + "'" : '') + ". " +
                     'No operations are allowed when using a fragment as a query. Only fragments are allowed.');
             }
             if (definition.kind === 'FragmentDefinition') {
@@ -8683,7 +8683,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
             }
         });
         if (typeof actualFragmentName === 'undefined') {
-            process.env.NODE_ENV === "production" ? invariant(fragments.length === 1, 6) : invariant(fragments.length === 1, "Found " + fragments.length + " fragments. `fragmentName` must be provided when there is not exactly 1 fragment.");
+            process.env.NODE_ENV === "production" ? invariant(fragments.length === 1, 12) : invariant(fragments.length === 1, "Found " + fragments.length + " fragments. `fragmentName` must be provided when there is not exactly 1 fragment.");
             actualFragmentName = fragments[0].name.value;
         }
         var query = __assign(__assign({}, document), { definitions: __spreadArrays([
@@ -8723,16 +8723,16 @@ var VuexORMGraphQLPlugin = (function (exports) {
         return target;
     }
     function checkDocument(doc) {
-        process.env.NODE_ENV === "production" ? invariant(doc && doc.kind === 'Document', 8) : invariant(doc && doc.kind === 'Document', "Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a \"gql\" tag? http://docs.apollostack.com/apollo-client/core.html#gql");
+        process.env.NODE_ENV === "production" ? invariant(doc && doc.kind === 'Document', 2) : invariant(doc && doc.kind === 'Document', "Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a \"gql\" tag? http://docs.apollostack.com/apollo-client/core.html#gql");
         var operations = doc.definitions
             .filter(function (d) { return d.kind !== 'FragmentDefinition'; })
             .map(function (definition) {
             if (definition.kind !== 'OperationDefinition') {
-                throw process.env.NODE_ENV === "production" ? new InvariantError(9) : new InvariantError("Schema type definitions not allowed in queries. Found: \"" + definition.kind + "\"");
+                throw process.env.NODE_ENV === "production" ? new InvariantError(3) : new InvariantError("Schema type definitions not allowed in queries. Found: \"" + definition.kind + "\"");
             }
             return definition;
         });
-        process.env.NODE_ENV === "production" ? invariant(operations.length <= 1, 10) : invariant(operations.length <= 1, "Ambiguous GraphQL document: contains " + operations.length + " operations");
+        process.env.NODE_ENV === "production" ? invariant(operations.length <= 1, 4) : invariant(operations.length <= 1, "Ambiguous GraphQL document: contains " + operations.length + " operations");
         return doc;
     }
     function getOperationDefinition(doc) {
@@ -8751,14 +8751,14 @@ var VuexORMGraphQLPlugin = (function (exports) {
     }
     function getQueryDefinition(doc) {
         var queryDef = getOperationDefinition(doc);
-        process.env.NODE_ENV === "production" ? invariant(queryDef && queryDef.operation === 'query', 12) : invariant(queryDef && queryDef.operation === 'query', 'Must contain a query definition.');
+        process.env.NODE_ENV === "production" ? invariant(queryDef && queryDef.operation === 'query', 6) : invariant(queryDef && queryDef.operation === 'query', 'Must contain a query definition.');
         return queryDef;
     }
     function getFragmentDefinition(doc) {
-        process.env.NODE_ENV === "production" ? invariant(doc.kind === 'Document', 13) : invariant(doc.kind === 'Document', "Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a \"gql\" tag? http://docs.apollostack.com/apollo-client/core.html#gql");
-        process.env.NODE_ENV === "production" ? invariant(doc.definitions.length <= 1, 14) : invariant(doc.definitions.length <= 1, 'Fragment must have exactly one definition.');
+        process.env.NODE_ENV === "production" ? invariant(doc.kind === 'Document', 7) : invariant(doc.kind === 'Document', "Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a \"gql\" tag? http://docs.apollostack.com/apollo-client/core.html#gql");
+        process.env.NODE_ENV === "production" ? invariant(doc.definitions.length <= 1, 8) : invariant(doc.definitions.length <= 1, 'Fragment must have exactly one definition.');
         var fragmentDef = doc.definitions[0];
-        process.env.NODE_ENV === "production" ? invariant(fragmentDef.kind === 'FragmentDefinition', 15) : invariant(fragmentDef.kind === 'FragmentDefinition', 'Must be a fragment definition.');
+        process.env.NODE_ENV === "production" ? invariant(fragmentDef.kind === 'FragmentDefinition', 9) : invariant(fragmentDef.kind === 'FragmentDefinition', 'Must be a fragment definition.');
         return fragmentDef;
     }
     function getMainDefinition(queryDoc) {
@@ -8781,7 +8781,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
         if (fragmentDefinition) {
             return fragmentDefinition;
         }
-        throw process.env.NODE_ENV === "production" ? new InvariantError(16) : new InvariantError('Expected a parsed GraphQL query with a query, mutation, subscription, or a fragment.');
+        throw process.env.NODE_ENV === "production" ? new InvariantError(10) : new InvariantError('Expected a parsed GraphQL query with a query, mutation, subscription, or a fragment.');
     }
     function createFragmentMap(fragments) {
         if (fragments === void 0) { fragments = []; }
@@ -9839,7 +9839,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
     });
 
     unwrapExports(Observable_1);
-    var Observable_2 = Observable_1.Observable;
+    Observable_1.Observable;
 
     var zenObservable = Observable_1.Observable;
 
@@ -10249,7 +10249,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
         ObservableQuery.prototype.refetch = function (variables) {
             var fetchPolicy = this.options.fetchPolicy;
             if (fetchPolicy === 'cache-only') {
-                return Promise.reject(process.env.NODE_ENV === "production" ? new InvariantError(3) : new InvariantError('cache-only fetchPolicy option should not be used together with query refetch.'));
+                return Promise.reject(process.env.NODE_ENV === "production" ? new InvariantError(1) : new InvariantError('cache-only fetchPolicy option should not be used together with query refetch.'));
             }
             if (fetchPolicy !== 'no-cache' &&
                 fetchPolicy !== 'cache-and-network') {
@@ -10265,7 +10265,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
         };
         ObservableQuery.prototype.fetchMore = function (fetchMoreOptions) {
             var _this = this;
-            process.env.NODE_ENV === "production" ? invariant(fetchMoreOptions.updateQuery, 4) : invariant(fetchMoreOptions.updateQuery, 'updateQuery option is required. This function defines how to update the query data with the new results.');
+            process.env.NODE_ENV === "production" ? invariant(fetchMoreOptions.updateQuery, 2) : invariant(fetchMoreOptions.updateQuery, 'updateQuery option is required. This function defines how to update the query data with the new results.');
             var combinedOptions = __assign(__assign({}, (fetchMoreOptions.query ? fetchMoreOptions : __assign(__assign(__assign({}, this.options), fetchMoreOptions), { variables: __assign(__assign({}, this.variables), fetchMoreOptions.variables) }))), { fetchPolicy: 'network-only' });
             var qid = this.queryManager.generateQueryId();
             return this.queryManager
@@ -10466,7 +10466,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
     }
     function assertNotCacheFirstOrOnly(obsQuery) {
         var fetchPolicy = obsQuery.options.fetchPolicy;
-        process.env.NODE_ENV === "production" ? invariant(fetchPolicy !== 'cache-first' && fetchPolicy !== 'cache-only', 5) : invariant(fetchPolicy !== 'cache-first' && fetchPolicy !== 'cache-only', 'Queries that specify the cache-first and cache-only fetchPolicies cannot also be polling queries.');
+        process.env.NODE_ENV === "production" ? invariant(fetchPolicy !== 'cache-first' && fetchPolicy !== 'cache-only', 3) : invariant(fetchPolicy !== 'cache-first' && fetchPolicy !== 'cache-only', 'Queries that specify the cache-first and cache-only fetchPolicies cannot also be polling queries.');
     }
 
     var MutationStore = (function () {
@@ -11922,7 +11922,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
         return DataStore;
     }());
 
-    var version = "2.6.8";
+    var version = "2.6.10";
 
     var hasSuggestedDevtools = false;
     var ApolloClient = (function () {
@@ -11937,7 +11937,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
                 link = ApolloLink.empty();
             }
             if (!link || !cache) {
-                throw process.env.NODE_ENV === "production" ? new InvariantError(1) : new InvariantError("In order to initialize Apollo Client, you must specify 'link' and 'cache' properties in the options object.\n" +
+                throw process.env.NODE_ENV === "production" ? new InvariantError(4) : new InvariantError("In order to initialize Apollo Client, you must specify 'link' and 'cache' properties in the options object.\n" +
                     "These options are part of the upgrade requirements when migrating from Apollo Client 1.x to Apollo Client 2.x.\n" +
                     "For more information, please visit: https://www.apollographql.com/docs/tutorial/client.html#apollo-client-setup");
             }
@@ -12030,7 +12030,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
             if (this.defaultOptions.query) {
                 options = __assign(__assign({}, this.defaultOptions.query), options);
             }
-            process.env.NODE_ENV === "production" ? invariant(options.fetchPolicy !== 'cache-and-network', 2) : invariant(options.fetchPolicy !== 'cache-and-network', 'The cache-and-network fetchPolicy does not work with client.query, because ' +
+            process.env.NODE_ENV === "production" ? invariant(options.fetchPolicy !== 'cache-and-network', 5) : invariant(options.fetchPolicy !== 'cache-and-network', 'The cache-and-network fetchPolicy does not work with client.query, because ' +
                 'client.query can only return a single result. Please use client.watchQuery ' +
                 'to receive multiple results from the cache and the network, or consider ' +
                 'using a different fetchPolicy, such as cache-first or network-only.');
@@ -12437,7 +12437,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
         }
     }();
 
-    var bind = Slot.bind, noContext = Slot.noContext;
+    Slot.bind; Slot.noContext;
 
     function defaultDispose() { }
     var Cache = /** @class */ (function () {
@@ -13281,7 +13281,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
         return true;
     }
     function readStoreResolver(object, typename, fieldName, args, context, _a) {
-        var resultKey = _a.resultKey, directives = _a.directives;
+        _a.resultKey; var directives = _a.directives;
         var storeKeyName = fieldName;
         if (args || directives) {
             storeKeyName = getStoreKeyName(storeKeyName, args, directives);
@@ -13444,7 +13444,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
                     }
                     else {
                         fragment = (fragmentMap || {})[selection.name.value];
-                        process.env.NODE_ENV === "production" ? invariant(fragment, 4) : invariant(fragment, "No fragment named " + selection.name.value + ".");
+                        process.env.NODE_ENV === "production" ? invariant(fragment, 3) : invariant(fragment, "No fragment named " + selection.name.value + ".");
                     }
                     var matches = true;
                     if (context.fragmentMatcherFunction && fragment.typeCondition) {
@@ -13499,7 +13499,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
                 }
                 if (dataIdFromObject) {
                     var semanticId = dataIdFromObject(value);
-                    process.env.NODE_ENV === "production" ? invariant(!semanticId || !isGeneratedId(semanticId), 5) : invariant(!semanticId || !isGeneratedId(semanticId), 'IDs returned by dataIdFromObject cannot begin with the "$" character.');
+                    process.env.NODE_ENV === "production" ? invariant(!semanticId || !isGeneratedId(semanticId), 4) : invariant(!semanticId || !isGeneratedId(semanticId), 'IDs returned by dataIdFromObject cannot begin with the "$" character.');
                     if (semanticId ||
                         (typeof semanticId === 'number' && semanticId === 0)) {
                         valueDataId = semanticId;
@@ -13522,8 +13522,8 @@ var VuexORMGraphQLPlugin = (function (exports) {
                     var hadTypename = escapedId.typename !== undefined;
                     var hasTypename = typename !== undefined;
                     var typenameChanged = hadTypename && hasTypename && escapedId.typename !== typename;
-                    process.env.NODE_ENV === "production" ? invariant(!generated || escapedId.generated || typenameChanged, 6) : invariant(!generated || escapedId.generated || typenameChanged, "Store error: the application attempted to write an object with no provided id but the store already contains an id of " + escapedId.id + " for this object. The selectionSet that was trying to be written is:\n" + JSON.stringify(field));
-                    process.env.NODE_ENV === "production" ? invariant(!hadTypename || hasTypename, 7) : invariant(!hadTypename || hasTypename, "Store error: the application attempted to write an object with no provided typename but the store already contains an object with typename of " + escapedId.typename + " for the object of id " + escapedId.id + ". The selectionSet that was trying to be written is:\n" + JSON.stringify(field));
+                    process.env.NODE_ENV === "production" ? invariant(!generated || escapedId.generated || typenameChanged, 5) : invariant(!generated || escapedId.generated || typenameChanged, "Store error: the application attempted to write an object with no provided id but the store already contains an id of " + escapedId.id + " for this object. The selectionSet that was trying to be written is:\n" + JSON.stringify(field));
+                    process.env.NODE_ENV === "production" ? invariant(!hadTypename || hasTypename, 6) : invariant(!hadTypename || hasTypename, "Store error: the application attempted to write an object with no provided typename but the store already contains an object with typename of " + escapedId.typename + " for the object of id " + escapedId.id + ". The selectionSet that was trying to be written is:\n" + JSON.stringify(field));
                     if (escapedId.generated) {
                         if (typenameChanged) {
                             if (!generated) {
@@ -13765,7 +13765,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
             };
         };
         InMemoryCache.prototype.evict = function (query) {
-            throw process.env.NODE_ENV === "production" ? new InvariantError(1) : new InvariantError("eviction is not implemented on InMemory Cache");
+            throw process.env.NODE_ENV === "production" ? new InvariantError(7) : new InvariantError("eviction is not implemented on InMemory Cache");
         };
         InMemoryCache.prototype.reset = function () {
             this.data.clear();
@@ -14301,7 +14301,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
          * @param {string} fieldName
          */
         Transformer.inputTypeContainsField = function (model, fieldName) {
-            var inputTypeName = model.singularName + "Input";
+            var inputTypeName = Context.getInstance().adapter.getInputTypeName(model) || model.singularName + "Input";
             var inputType = Context.getInstance().schema.getType(inputTypeName, false);
             if (inputType === null)
                 throw new Error("Type " + inputType + " doesn't exist.");
@@ -15252,7 +15252,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
             if (path === void 0) { path = []; }
             if (model === null)
                 return "";
-            var context = Context.getInstance();
+            Context.getInstance();
             var relationQueries = [];
             model.getRelations().forEach(function (field, name) {
                 var relatedModel = Model.getRelatedModel(field);
@@ -15956,7 +15956,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
          * @returns {Promise<any>} The result
          */
         SimpleQuery.call = function (_a, _b) {
-            var dispatch = _a.dispatch;
+            _a.dispatch;
             var query = _b.query, bypassCache = _b.bypassCache, variables = _b.variables;
             return __awaiter(this, void 0, void 0, function () {
                 var context, parsedQuery, mockReturnValue, result;
@@ -16011,7 +16011,7 @@ var VuexORMGraphQLPlugin = (function (exports) {
          * @returns {Promise<any>} The result
          */
         SimpleMutation.call = function (_a, _b) {
-            var dispatch = _a.dispatch;
+            _a.dispatch;
             var query = _b.query, variables = _b.variables;
             return __awaiter(this, void 0, void 0, function () {
                 var context, parsedQuery, mockReturnValue, result;
@@ -16168,6 +16168,8 @@ var VuexORMGraphQLPlugin = (function (exports) {
     exports.default = VuexORMGraphQLPlugin;
     exports.mock = mock;
     exports.setupTestUtils = setupTestUtils;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
     return exports;
 

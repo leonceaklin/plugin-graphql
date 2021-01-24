@@ -255,7 +255,8 @@ export default class Transformer {
    * @param {string} fieldName
    */
   private static inputTypeContainsField(model: Model, fieldName: string): boolean {
-    const inputTypeName = `${model.singularName}Input`;
+    const inputTypeName =
+      Context.getInstance().adapter.getInputTypeName(model) || `${model.singularName}Input`;
     const inputType: GraphQLType | null = Context.getInstance().schema!.getType(
       inputTypeName,
       false
